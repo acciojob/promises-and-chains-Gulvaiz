@@ -1,29 +1,30 @@
-//your JS code here. If required.
-const form = document.getElementById("formSubmit")
+const form = document.getElementById("formSubmit");
 
 form.addEventListener("submit", (event) => {
-       event.preventDefault();
+  event.preventDefault();
 
-       const name = document.getElementById("name").value
-       const age = document.getElementById("age").value
+  const name = document.getElementById("name").value;
+  const age = document.getElementById("age").value;
 
-       if(!name || !age){
-            alert("inputs cannot be empty.")
-            return
-       }
+  if (!name || !age) {
+    alert("inputs cannot be empty.");
+    return;
+  }
 
-       const ageV = Number(age)
-           const ageForm = new Promise((resolve, reject) => {
-                 setInterval((name,age) => {
-                      if(age>18){
-                         resolve (``)
-                      }
-                      else{
-                         reject(``)
-                      }
-                 }, 4000)
-            }).then((message) => alert(message) )
-            .catch((error) => alert(error))
-       
-} )
+  const ageV = Number(age);
+  
+  const ageForm = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (ageV > 18) {
+        resolve(`Welcome, ${name}. You can vote.`);
+      } else {
+        reject(`Oh sorry, ${name}. You aren't old enough.`);
+      }
+    }, 4000); // 4-second delay
+  });
 
+  // Handle the resolved or rejected promise
+  ageForm
+    .then((message) => alert(message))
+    .catch((error) => alert(error));
+});
